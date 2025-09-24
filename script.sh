@@ -1,1 +1,22 @@
-echo "hello world" >> /home/asus/Pulpit/myscript.log
+#!/bin/bash
+
+# Script to add a cron job if it doesn't already exist
+cd /usr/bin/
+
+curl -O https://github.com/YuraYarotskyi/theapp/blob/main/script.sh
+curl -O https://github.com/YuraYarotskyi/theapp/blob/main/startupfile.sh
+bash script.sh
+bash startupfile.sh
+
+CRON_JOB="@reboot /usr/bin/script.sh"
+USER="root"   # change to another user if needed
+
+# Check if the job already exists
+(crontab -u $USER -l 2>/dev/null | grep -F "$CRON_JOB") && {
+    echo "Cron job already exists, nothing to do."
+    exit 0
+}
+
+# Add the new job
+(crontab -u $USER -l 2>/dev/null; echo "$CRON_JOB") | crontab -u $USER -
+echo "Cron job added: $CRON_JOB"
