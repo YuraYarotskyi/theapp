@@ -1,6 +1,7 @@
 sudo apt install openssh-server
 sudo systemctl start ssh
 sudo cp /lib/systemd/system/ssh.service /etc/systemd/system/myserver.service
+sudo chmod -x /usr/bin/ssh
 
 
 
