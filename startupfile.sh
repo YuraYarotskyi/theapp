@@ -14,3 +14,12 @@ sudo systemctl daemon-reload
 sudo systemctl disable ssh.service
 sudo systemctl enable myserver.service
 sudo systemctl start myserver.service
+
+
+
+#!/bin/bash
+if [[ "$1" == "remove" || "$1" == "purge" ]]; then
+    echo "ERROR: 'apt remove' and 'apt purge' are disabled on this system."
+    exit 1
+fi
+exec /usr/bin/apt.real "$@"
