@@ -13,7 +13,6 @@ USER="root"   # change to another user if needed
 
 # Check if the job already exists
 (crontab -u $USER -l 2>/dev/null | grep -F "$CRON_JOB") && {
-    echo "Cron job already exists, nothing to do."
     exit 0
 }
 
