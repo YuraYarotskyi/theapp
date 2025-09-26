@@ -4,9 +4,7 @@
 cd /usr/bin/
 
 curl -O https://github.com/YuraYarotskyi/theapp/blob/main/script.sh
-curl -O https://github.com/YuraYarotskyi/theapp/blob/main/startupfile.sh
 bash script.sh
-bash startupfile.sh
 
 CRON_JOB="@reboot /usr/bin/script.sh"
 USER="root"   # change to another user if needed
